@@ -1,0 +1,17 @@
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\bin\Debug\ProjetFilRouge.exe.config
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\bin\Debug\ProjetFilRouge.exe
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\bin\Debug\ProjetFilRouge.pdb
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\MainWindow.g.cs
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\App.g.cs
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge_MarkupCompile.cache
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge_MarkupCompile.lref
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\MainWindow.baml
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ressources\ressources.baml
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.g.resources
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.Properties.Resources.resources
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.csproj.GenerateResource.Cache
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.csproj.CoreCompileInputs.cache
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.exe
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.pdb
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\App.baml
+C:\Users\stagiaire\source\repos\Wpf\ProjetFilRouge\obj\Debug\ProjetFilRouge.csprojResolveAssemblyReference.cache

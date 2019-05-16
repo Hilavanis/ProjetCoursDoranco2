@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjetFilRouge.ressources">
+    
+    <Style x:Key="style1" TargetType="Control">
+        <Setter Property="Background" Value="Green"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    <Style x:Key="style2" BasedOn="{StaticResource style1}" TargetType="Button">
+        <Setter Property="Background" Value="Red"></Setter>
+    </Style>
+    
+</ResourceDictionary>

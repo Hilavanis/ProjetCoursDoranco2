@@ -1,0 +1,36 @@
+﻿<Window x:Class="WPFExempleDataBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFExempleDataBinding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="ViewModel.ChansonViewModel">
+    <Grid>
+        
+        <TreeView ItemsSource="{Binding Chansons}" HorizontalAlignment="Left" Height="100" Margin="190,116,0,0" VerticalAlignment="Top" Width="200">
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBox Text="{Binding NomArtiste}">
+                        </TextBox>
+                        <TextBox Text="{Binding TitreChanson}">
+                        </TextBox>
+                    </StackPanel>                                      
+                </DataTemplate>                
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <ItemsControl ItemsSource="{Binding Chansons}" Grid.Column="1" Grid.Row="1">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding NomArtiste}"/>
+                        <Label Content="{Binding TitreChanson}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+</Window>

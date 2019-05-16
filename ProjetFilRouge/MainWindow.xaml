@@ -1,0 +1,283 @@
+﻿<Window x:Class="ProjetFilRouge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetFilRouge"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="ViewModel.FolderViewModel">
+    
+    <Window.Resources>
+        <Style x:Key="MarginStyle" TargetType="ItemsControl">
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+        <Style TargetType="TreeView" BasedOn="{StaticResource MarginStyle}" />
+
+        <!--<Style x:Key="monTrigerStyle" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="FontStyle" Value="Italic"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding ElementName=SqlServerName, Path=Text}" Value="Coucou">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                </DataTrigger>
+
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.150" Storyboard.TargetProperty="FontSize" To="18" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.150" Storyboard.TargetProperty="FontSize" To="12" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>pp
+            </Style.Triggers>   
+            
+           
+        </Style>-->
+        
+        
+        <ControlTemplate x:Key="LeTemplateDeMonBouton" TargetType="Button">
+            <Grid>
+                <Ellipse Fill="DarkOliveGreen">
+                    <Ellipse.BitmapEffect>
+                        <BlurBitmapEffect Radius="2"/>
+                    </Ellipse.BitmapEffect>
+                </Ellipse>
+                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+            
+    </Window.Resources>
+
+    <!--Evènement tunneling -->
+    <!--<DockPanel PreviewMouseDown="Connection_Click">-->
+    <DockPanel>
+
+            <!--Evènement bubbled -->
+    <!--<DockPanel ButtonBase.Click="Connection_Impossible">-->
+        
+    <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <ToolBar>
+                <Button x:Name="btnClearStats" Content="{StaticResource ClearStats}" />
+                <Button x:Name="btnSaveLastAnalysis" Content="{StaticResource SaveLastAnalysis}" />
+                <Button x:Name="btnValidateHermeticus" Content="{StaticResource ValidateHermeticus}" />
+                <Button x:Name="btnAbout" Content="{StaticResource About}" />
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom" Height="30" >
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lblStatusConnection" Content="un"/>
+                <Label x:Name="lblStatsCleared" Content="deux"/>
+            </StackPanel>
+        </StatusBar>
+        <TreeView x:Name="tvCorpus" ItemsSource="{Binding Folders}" BorderThickness="1" Margin="0 0 4 0" DockPanel.Dock="Left" Width="230" >
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" Text="{Binding Name}" ></TextBlock>
+                        <TextBlock FontWeight="Bold" Text="{Binding Lang}" ></TextBlock>
+                        <TextBlock FontWeight="Bold" Text="{Binding Tooltip}" ></TextBlock>
+                        <TextBlock FontWeight="Bold" Text="{Binding Label}" ></TextBlock>
+                    </StackPanel>
+                 </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+
+        <TabControl x:Name="tcDisplay">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="images\SQLServer.ico" />
+                        <TextBlock Text="{StaticResource Connection}" Foreground="Blue" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="276" />
+                        <ColumnDefinition Width="Auto" MinWidth="276" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="texte"
+                       VerticalAlignment="Center"
+                       Margin="3"
+                       Grid.Column="0"
+                       Grid.Row="0" />
+                        <ComboBox Margin="3" Grid.Column="0" Grid.Row="0"
+                          x:Name="SqlServerName"
+                          IsEditable="True"
+                          Text="coucou"  />
+                    </StackPanel>
+                    <GroupBox Header="{StaticResource Authentication}"
+                      Grid.Column="0"
+                      Grid.Row="1">
+                        <StackPanel>
+                            <!--<RadioButton Content="{StaticResource WindowsAuthentication}" Click="Connection_Window"-->
+                            
+                            <RadioButton Content="{StaticResource WindowsAuthentication}"
+                                 Margin="3"
+                                 x:Name="SqlAuthTypeWindows"
+                                 IsChecked="False">
+                            </RadioButton>
+                            <!--<RadioButton Content="{StaticResource SqlAuthentication}" Click="Connection_SQL"-->
+                            <RadioButton Content="{StaticResource SqlAuthentication}"  
+                                 Margin="3"
+                                 x:Name="SqlAuthTypeSql">
+                            </RadioButton>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Login: "
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   Margin="3"
+                                   VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1"
+                                 Grid.Row="0"
+                                 Margin="3"
+                                 Text="USER" />
+                                <TextBlock Text="Mot de passe: "
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   Margin="3"
+                                   VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1"
+                                 Grid.Row="1"
+                                 Margin="3"
+                                 Text="PASSWORD" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    <StackPanel x:Name="panelButtons1" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="5,0,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <!--Evènement tunneling-->
+                        <!--<Button x:Name="Connection" Content="{StaticResource Connect}" Style="{StaticResource monTrigerStyle}" Width="100" Click="Connection_Click" Template="{StaticResource LeTemplateDeMonBouton}" />-->
+                        
+                        <!--Style="{StaticResource monTrigerStyle}"-->
+                        <Button x:Name="Connection" Content="{StaticResource Connect}"  Width="100" Template="{StaticResource LeTemplateDeMonBouton}" />
+
+                        <!--Evènement bubbled -->
+                        <!--<Button x:Name="Connection" Content="{StaticResource Connect}" Width="100" />-->
+
+
+                        <Button Content="{StaticResource RunAnalysis}" x:Name="btnAnalyzeAll" Width="100" IsEnabled="False"/>
+                        <Button x:Name="btnCacheExplorer" Content="{StaticResource CacheExplorer}" IsEnabled="False" />
+                    </StackPanel>
+                    <TextBlock x:Name="tbServerInfos" TextWrapping="Wrap" Text="TEXTE" Grid.Row="4" Grid.Column="0" Margin="10">
+                    </TextBlock>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,0,0,0">
+                        <Label x:Name="lblDatabases" Content="{StaticResource Databases}" />
+                    </StackPanel>
+                    <DataGrid x:Name="dgDatabases" Grid.Row="6" AutoGenerateColumns="False" 
+                              SelectionMode="Single" SelectionUnit="Cell" EnableRowVirtualization="False" 
+                              CanUserAddRows="False" >
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="{StaticResource Analyze}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="False" HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn CanUserSort="False" Header="{StaticResource Database}"/>
+                            <DataGridTextColumn CanUserSort="False" Header="{StaticResource Compatibility}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="images\open.ico" />
+                        <TextBlock Text="{StaticResource Results}" Foreground="DarkGreen" />
+                    </StackPanel>
+                </TabItem.Header>
+                <WebBrowser x:Name="htmlBrowser" />
+            </TabItem>
+            <TabItem x:Name="tabCacheExplorer" Visibility="Hidden">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="images\Processor.ico" />
+                        <TextBlock Text="Cache Explorer" Foreground="DarkMagenta" />
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,5">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{StaticResource FilterCache}" />
+                            <TextBox x:Name="txtFilterCache" Width="100"/>
+                            <Button x:Name="btnFilterCache" Content="{StaticResource Filter}" Margin="5,5,5,5" />
+                        </StackPanel>
+                        <DataGrid x:Name="dgCacheExplorer" AutoGenerateColumns="False"
+                    EnableRowVirtualization="False" CanUserAddRows="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{StaticResource NbExec}" Width="55" />
+                                <DataGridTextColumn Header="{StaticResource Query}" Width="400" IsReadOnly="True">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip" Value="AIDE" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn MinWidth="100" Header="{StaticResource Query}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical">
+                                                <Button x:Name="btnViewQuery" Content="{StaticResource Query}" Height="30" VerticalAlignment="Bottom" />
+                                                <Button x:Name="btnViewPlan" Content="Plan" Height="30" VerticalAlignment="Bottom" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{StaticResource CreationDate}" Width="70" />
+                                <DataGridTextColumn Header="{StaticResource CreationDate}" Width="300">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="{StaticResource Warnings}" Width="30" />
+                                <DataGridTextColumn Header="{StaticResource MissingIndexes}" Width="30" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
